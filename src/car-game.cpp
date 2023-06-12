@@ -2,51 +2,84 @@
 #include <string>
 using namespace std;
 
-int main(void) {
+class Car {
+
+private:
+  bool started = false;
+  string helpMessages[9] = {"",
+
+                            "Miscellaneous:",
+                            "help        - to get this message",
+                            "",
+
+                            "Car controls:",
+                            "start       - to start the car",
+                            "stop        - to stop the car",
+                            "exit        - to exit from the car",
+                            ""};
+
+public:
+  string name;
+
+  void start() {
+    if (started) {
+      cout << "Hey, car is already started!\n";
+    } else {
+      started = true;
+      cout << "Car is started...\n";
+    }
+  }
+
+  void stop() {
+    if (started) {
+      started = false;
+      cout << "Car is stopped.\n";
+    } else {
+      cout << "Hey, car is already stopped!\n";
+    }
+  }
+
+  void exitCar() {
+    if (started) {
+      cout << "Hey! You cannot exit while car is running!\n"
+           << "First stop the car, then exit.\n";
+    } else {
+      cout << "Thanks for playing :)\n";
+      exit(0);
+    }
+  }
+
+  void printHelp() {
+    for (int i = 0; i < (sizeof(helpMessages) / sizeof(string)); i++) {
+      cout << helpMessages[i] << '\n';
+    }
+  }
+};
+
+int main() {
+  Car car;
+  string command;
+
   cout << "Welcome to Car game. Type \"help\" to get instructions.\n";
 
-  bool started = false;
-  string command;
-  string message[] = {"",
-
-                      "Miscellaneous:",
-                      "help        - to get this message",
-                      "",
-
-                      "Game controls:",
-                      "start       - to start the car",
-                      "stop        - to stop the car",
-                      "quit        - to quit from the game",
-                      ""};
-
   while (true) {
-    cout << ">> "; // Prompt
+    cout << ">> ";
     cin >> command;
 
-    if (command == "start") {
-      if (started) {
-        cout << "Hey! The car is already started.\n";
-      } else {
-        cout << "Car is started...\n";
-        started = true;
-      }
-    } else if (command == "stop") {
-      if (started) {
-        cout << "Car is stopped.\n";
-        started = false;
-      } else {
-        cout << "Hey! Car is already stopped.\n";
-      }
-    } else if (command == "quit") {
-      cout << "Thanks for playing! :)\n";
-      break;
-    } else if (command == "help") {
-      for (int i = 0; i < (sizeof(message) / sizeof(string)); i++) {
-        cout << message[i] << '\n';
-      }
-    } else {
+    if (command == "start")
+      car.start();
+
+    else if (command == "stop")
+      car.stop();
+
+    else if (command == "help")
+      car.printHelp();
+
+    else if (command == "exit")
+      car.exitCar();
+
+    else
       cout << "Sorry, I didn't understand it :(\n";
-    }
   }
 
   return 0;
