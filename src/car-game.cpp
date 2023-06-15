@@ -3,8 +3,7 @@
 using namespace std;
 
 class Car {
-
-private:
+ private:
   bool started = false;
   string helpMessages[9] = {"",
 
@@ -18,7 +17,7 @@ private:
                             "exit        - to exit from the car",
                             ""};
 
-public:
+ public:
   string name;
 
   void start() {
