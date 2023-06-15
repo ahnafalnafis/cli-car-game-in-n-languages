@@ -35,8 +35,13 @@ class Car:
             print(self.message)
 
     def exitCar(self):
-        print("Thanks for playing! :)")
-        exit(0)
+        if self.started:
+            print("Hey! You cannot exit while car is running!")
+            print("First stop the car, then exit.")
+
+        else:
+            print("Thanks for playing :)")
+            exit(0)
 
 
 car = Car()
