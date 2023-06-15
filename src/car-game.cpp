@@ -18,8 +18,6 @@ class Car {
                             ""};
 
  public:
-  string name;
-
   void start() {
     if (started) {
       cout << "Hey, car is already started!\n";
